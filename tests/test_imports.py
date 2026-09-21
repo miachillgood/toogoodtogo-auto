@@ -3,6 +3,7 @@ import sys
 
 from tgtg_cli.apis.tgtg import TGTG
 from tgtg_cli.cli.config import DEFAULT_SETTINGS, Config, MonitorSettings
+from tgtg_cli.services.product_service import _parse_item_selections
 
 
 def test_package_metadata_available() -> None:
@@ -57,3 +58,8 @@ def test_default_monitor_settings_allow_notifications_to_be_disabled() -> None:
     settings = MonitorSettings.model_validate(DEFAULT_SETTINGS["MONITOR"])
 
     assert settings.ntfy_topic is None
+
+
+def test_item_selection_supports_multiple_unique_choices() -> None:
+    """Multiple table choices should retain order and remove duplicates."""
+    assert _parse_item_selections("2+1+2", item_count=3) == [1, 0]

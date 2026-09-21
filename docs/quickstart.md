@@ -31,6 +31,7 @@ description: >-
    email.
 
 6. Once logged in, choose **Monitor** and select the item you want to watch.
+   To monitor several items, join their table numbers with `+`, such as `1+2`.
 
 !!! tip
     For best results when using the automated checkout, a free virtual card

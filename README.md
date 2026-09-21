@@ -20,7 +20,7 @@ and optional checkout with 3-D Secure handling.
 - Passwordless account login with a six-digit email code
 - Search by latitude, longitude, and radius
 - Filters for favourites, availability, and store name
-- Continuous monitoring with configurable hours and polling interval
+- Multi-item monitoring with configurable hours and polling interval
 - Desktop and mobile notifications through [ntfy](https://ntfy.sh/)
 - Optional automatic checkout and support for common 3-D Secure flows
 - Local configuration, session persistence, and payment-field validation
@@ -56,7 +56,8 @@ available.
 3. Enter your account email, coordinates, and search radius.
 4. Leave `ENABLE_CHECKOUT = False` during initial setup.
 5. Restart the application, select **Login**, and enter the email code.
-6. Select **Monitor**, choose a bag, and keep the process running.
+6. Select **Monitor**, choose one bag or enter choices such as `1+2`, and keep
+   the process running.
 
 The full settings reference is in
 [docs/configuration.md](docs/configuration.md). Installation details and

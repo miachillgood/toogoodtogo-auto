@@ -1,4 +1,3 @@
-import string
 from datetime import datetime, time, timedelta
 from time import sleep
 from typing import Any, cast
@@ -14,6 +13,18 @@ from tgtg_cli.services.order_service import OrderService
 from tgtg_cli.utils.exceptions import SettingsError, UnexpectedResponse
 from tgtg_cli.utils.models import ItemOverview
 from tgtg_cli.utils.notifications import send_notification
+
+
+def _parse_item_selections(answer: str, item_count: int) -> list[int]:
+    """Parse a plus-separated, one-based item selection into unique indexes."""
+    choices = [part.strip() for part in answer.split("+")]
+    if not choices or any(
+        not choice.isdigit()
+        or int(choice) not in range(1, item_count + 1)
+        for choice in choices
+    ):
+        raise ValueError("Invalid item selection")
+    return list(dict.fromkeys(int(choice) - 1 for choice in choices))
 
 
 class ProductService:
@@ -261,6 +272,7 @@ class ProductService:
         start_time = self._config.settings.monitor.start_time
         end_time = self._config.settings.monitor.end_time
         use_time_frame = start_time is not None and end_time is not None
+        selected_items = [selected_item] if selected_item else []
 
         # Start filter configuration and item selection if no item is provided
         # (meaning it is the first time running the method)
@@ -321,21 +333,21 @@ class ProductService:
                 table.add_row(*row_data)
             console.print(table)
 
-            # Ask for item selection
+            # Ask for one or more item selections
             while True:
-                selection = console.int_prompt.ask(
-                    "\nSelect an item to monitor"
+                answer = console.prompt.ask(
+                    "\nSelect item(s) to monitor "
+                    "(separate multiple numbers with +)"
                 )
-                if not (
-                    all(num in string.digits for num in str(selection))
-                    and selection in range(1, len(items) + 1)
-                ):
+                try:
+                    indexes = _parse_item_selections(answer, len(items))
+                except ValueError:
                     console.error(
-                        "\nInvalid selection. "
-                        "Please enter a number from the table above."
+                        "\nInvalid selection. Enter numbers from the table "
+                        "separated by +, for example: 1+3."
                     )
                     continue
-                selected_item = items[selection - 1]
+                selected_items = [items[index] for index in indexes]
                 break
 
         # Inner function to check if the current time is within the time frame
@@ -367,10 +379,10 @@ class ProductService:
             Returns:
                 str: Status message to be shown in the console.
             """
-            item = selected_item.name
+            item_names = ", ".join(item.name for item in selected_items)
             if is_active:
                 return (
-                    f"Monitoring '{item}' to be back in stock.\n"
+                    f"Monitoring '{item_names}' to be back in stock.\n"
                     f"➤ Delay: {delay} ms\n"
                     f"➤ Last update: {datetime.now().strftime('%H:%M:%S')}"
                 )
@@ -394,12 +406,20 @@ class ProductService:
 
                 # Check if item is available
                 if is_active:
-                    items_available = self._get_item_availability(
-                        latitude=latitude,
-                        longitude=longitude,
-                        item_id=selected_item.id,
+                    available_item = next(
+                        (
+                            item
+                            for item in selected_items
+                            if self._get_item_availability(
+                                latitude=latitude,
+                                longitude=longitude,
+                                item_id=item.id,
+                            ) > 0
+                        ),
+                        None,
                     )
-                    if items_available > 0:
+                    if available_item is not None:
+                        selected_item = available_item
                         break
 
                 # Update status message and sleep
