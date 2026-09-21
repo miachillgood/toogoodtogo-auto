@@ -2,7 +2,7 @@ import importlib.metadata
 import sys
 
 from tgtg_cli.apis.tgtg import TGTG
-from tgtg_cli.cli.config import Config
+from tgtg_cli.cli.config import DEFAULT_SETTINGS, Config, MonitorSettings
 
 
 def test_package_metadata_available() -> None:
@@ -50,3 +50,10 @@ def test_container_definition_is_inert(mocker) -> None:
 
     config_init.assert_not_called()
     tgtg_init.assert_not_called()
+
+
+def test_default_monitor_settings_allow_notifications_to_be_disabled() -> None:
+    """The generated configuration must be valid without an ntfy topic."""
+    settings = MonitorSettings.model_validate(DEFAULT_SETTINGS["MONITOR"])
+
+    assert settings.ntfy_topic is None

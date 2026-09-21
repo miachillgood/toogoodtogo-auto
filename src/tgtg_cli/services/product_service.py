@@ -428,15 +428,17 @@ class ProductService:
 
         # Stop if checkout is disabled
         if not checkout_enabled:
-            send_notification(
-                topic=self._config.settings.monitor.ntfy_topic,
-                title="Item available!",
-                message=(
-                    f"The monitored item '{selected_item.name}' is back in "
-                    f"stock."
-                ),
-                headers={"tag": "bangbang"},
-            )
+            topic = self._config.settings.monitor.ntfy_topic
+            if topic:
+                send_notification(
+                    topic=topic,
+                    title="Item available!",
+                    message=(
+                        f"The monitored item '{selected_item.name}' is back "
+                        "in stock."
+                    ),
+                    headers={"tag": "bangbang"},
+                )
             console.info("Checkout is disabled. Stopping...", show_time=False)
             return
 

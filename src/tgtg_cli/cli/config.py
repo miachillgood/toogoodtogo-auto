@@ -379,7 +379,11 @@ class MonitorSettings(BaseModel):
     delay_in_milliseconds: int = Field(alias="DELAY_IN_MILLISECONDS", gt=0)
     start_time: time | None = Field(alias="START_TIME")
     end_time: time | None = Field(alias="END_TIME")
-    ntfy_topic: str = Field(alias="NTFY_TOPIC", min_length=1)
+    ntfy_topic: str | None = Field(
+        default=None,
+        alias="NTFY_TOPIC",
+        min_length=1,
+    )
 
     model_config = ConfigDict(populate_by_name=True)
 
@@ -423,6 +427,12 @@ class MonitorSettings(BaseModel):
         Returns:
             object: Converted time value or None if the value was empty.
         """
+        return _convert_empty_string_to_none(value)
+
+    @field_validator("ntfy_topic", mode="before")
+    @classmethod
+    def _convert_ntfy_topic_to_none_if_empty(cls, value: object) -> object:
+        """Treat an empty notification topic as notifications disabled."""
         return _convert_empty_string_to_none(value)
 
     @model_validator(mode="after")
@@ -513,8 +523,12 @@ class SettingsModel(BaseModel):
                     f"Checkout is enabled, but the following payment details "
                     f"are missing: {', '.join(missing)}."
                 )
-            else:
-                return self
+            if self.monitor.ntfy_topic is None:
+                raise SettingsError(
+                    "Invalid monitor configuration. NTFY_TOPIC is required "
+                    "when checkout is enabled so 3DS prompts can be sent."
+                )
+            return self
 
     @model_validator(mode="after")
     def _validate_proxy_set_if_capsolver_api_key_provided(
