@@ -1,6 +1,6 @@
 ---
 description: >-
-  How to install the TooGoodToGo-CLI globally with uv or pipx, or inside a
+  How to install TooGoodToGo Auto globally with uv or pipx, or inside a
   virtual environment with pip.
 ---
 
@@ -9,13 +9,13 @@ description: >-
 You can install the app globally with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv tool install tgtg-cli
+uv tool install git+https://github.com/miachillgood/toogoodtogo-auto.git
 ```
 
 or with [pipx](https://pipx.pypa.io/stable/how-to/install-pipx/):
 
 ```bash
-pipx install tgtg-cli
+pipx install git+https://github.com/miachillgood/toogoodtogo-auto.git
 ```
 
 ---
@@ -23,13 +23,13 @@ pipx install tgtg-cli
 If you only want to install the CLI inside a virtual environment:
 
 ```bash
-pip install tgtg-cli
+pip install git+https://github.com/miachillgood/toogoodtogo-auto.git
 ```
 
 or with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv add tgtg-cli
+uv add git+https://github.com/miachillgood/toogoodtogo-auto.git
 ```
 
 Once installed, head over to the [Quick Start](quickstart.md).

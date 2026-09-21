@@ -28,7 +28,7 @@ from tgtg_cli.utils.devices import get_random_device
 from tgtg_cli.utils.exceptions import SettingsError
 from tgtg_cli.utils.models import Device, SessionTokens
 
-PROJECT_NAME = "TGTG-CLI"
+PROJECT_NAME = "TooGoodToGo-Auto"
 
 SETTINGS_DIR = Path(user_config_dir(PROJECT_NAME, ensure_exists=True))
 SETTINGS_FILE_PATH = SETTINGS_DIR / "settings.ini"
@@ -40,7 +40,7 @@ COOKIES_FILE_PATH = CACHE_DIR / "cookies.txt"
 
 LOG_DIR = Path(CACHE_DIR, "logs")
 LOG_DIR.mkdir(parents=True, exist_ok=True)
-LOG_FILE_PATH = LOG_DIR / "tgtg-cli.log"
+LOG_FILE_PATH = LOG_DIR / "tgtg-auto.log"
 
 
 DEFAULT_SETTINGS: dict[str, dict[str, str]] = {

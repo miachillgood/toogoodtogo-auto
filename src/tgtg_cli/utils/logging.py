@@ -5,7 +5,7 @@ from tgtg_cli.cli.config import LOG_FILE_PATH
 
 
 def get_logger(
-    name: str = "TGTG-CLI",
+    name: str = "TooGoodToGo-Auto",
     level: int = logging.DEBUG,
 ) -> logging.Logger:
     """
@@ -16,7 +16,8 @@ def get_logger(
     the backup count is exceeded.
 
     Args:
-        name (str, optional): Name of the logger. Defaults to "TGTG-CLI".
+        name (str, optional): Name of the logger. Defaults to
+                              "TooGoodToGo-Auto".
         level (int, optional): Level of the logger. Defaults to logging.DEBUG.
 
     Returns:

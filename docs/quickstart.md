@@ -1,6 +1,6 @@
 ---
 description: >-
-  Get TooGoodToGo-CLI up and running: configure the app, log in and begin reserving items.
+  Get TooGoodToGo Auto running: configure the app, log in and begin monitoring items.
 ---
 
 # Quick Start
@@ -12,7 +12,7 @@ description: >-
     ```
 
     !!! note
-        You can also start the CLI with `tgtg-cli`, `toogoodtogo` and
+        You can also start the CLI with `tgtg`, `tgtg-cli`, `toogoodtogo` and
         `toogoodtogo-cli`.
 
 2. Select **Settings** from the menu. This opens up the settings file in your

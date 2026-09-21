@@ -1,65 +1,109 @@
-[![PyPI](https://img.shields.io/pypi/v/TGTG-CLI.svg?label=PyPI)](https://pypi.org/project/TGTG-CLI/)
-[![Python](https://img.shields.io/pypi/pyversions/TGTG-CLI.svg?label=Python)](https://pypi.org/project/TGTG-CLI/)
-[![CI](https://github.com/peterschwps/TooGoodToGo-CLI/actions/workflows/ci.yml/badge.svg)](https://github.com/peterschwps/TooGoodToGo-CLI/actions/workflows/ci.yml)
+[![CI](https://github.com/miachillgood/toogoodtogo-auto/actions/workflows/ci.yml/badge.svg)](https://github.com/miachillgood/toogoodtogo-auto/actions/workflows/ci.yml)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-# TooGoodToGo-CLI
+# TooGoodToGo Auto
 
-**The only CLI for Too Good To Go (TGTG) that automates the full checkout process.**
+TooGoodToGo Auto is an unofficial Python command-line application for finding,
+monitoring, and reserving Too Good To Go surprise bags. It supports passwordless
+email login, persistent sessions, configurable search areas, ntfy notifications,
+and optional checkout with 3-D Secure handling.
 
-TooGoodToGo-CLI is a free, open-source bot that monitors magic bags and reserves them automatically before they sell out. It runs directly from the command line, is easy to set up and doesn't require any extra tools.
-
-![Demo](https://raw.githubusercontent.com/peterschwps/TooGoodToGo-CLI/main/docs/assets/demo.gif)
-
-📖 **[Read the full documentation.](https://peterschwps.com/docs/tgtg/)**
+> [!IMPORTANT]
+> This project uses unofficial endpoints. They can change without notice, and
+> using automation may violate Too Good To Go's terms or lead to rate limits or
+> account restrictions. Start with checkout disabled and use the software at
+> your own risk.
 
 ## Features
 
-- **Account Login**: passwordless login and persistent sessions.
-- **Automatic Checkout**: handles the full checkout flow including any 3DS challenges.
-- **Easy Setup**: all settings in a single file, editable with any text editor or directly from the command line.
-- **Interactive Menu**: guided flow, easy to navigate.
-- **Mobile & Desktop Notifications**: get notified via Ntfy when monitored items become available.
-- **Monitor Items**: watch any item in your area and wait for it to become available.
+- Passwordless account login with a six-digit email code
+- Search by latitude, longitude, and radius
+- Filters for favourites, availability, and store name
+- Continuous monitoring with configurable hours and polling interval
+- Desktop and mobile notifications through [ntfy](https://ntfy.sh/)
+- Optional automatic checkout and support for common 3-D Secure flows
+- Local configuration, session persistence, and payment-field validation
 
-## Installation
+## Install from this repository
 
-Install the app globally with [uv](https://docs.astral.sh/uv/):
-
-```bash
-uv tool install tgtg-cli
-```
-
-or with [pipx](https://pipx.pypa.io/stable/how-to/install-pipx/):
+Python 3.12 or newer is required. The recommended installation method is
+[uv](https://docs.astral.sh/uv/):
 
 ```bash
-pipx install tgtg-cli
+git clone https://github.com/miachillgood/toogoodtogo-auto.git
+cd toogoodtogo-auto
+uv tool install .
 ```
 
-Other options (pip, virtual environments) are covered in the [Installation guide](https://peterschwps.com/docs/tgtg/installation/).
+For development:
 
-## Quick Start
+```bash
+git clone https://github.com/miachillgood/toogoodtogo-auto.git
+cd toogoodtogo-auto
+uv sync
+uv run tgtg-auto
+```
 
-1. Start the CLI:
+You can launch the installed application with `tgtg-auto`. The compatible
+aliases `tgtg`, `tgtg-cli`, `toogoodtogo`, and `toogoodtogo-cli` are also
+available.
 
-   ```bash
-   tgtg
-   ```
+## Quick start
 
-    > You can also start the CLI with `tgtg-cli`, `toogoodtogo` and `toogoodtogo-cli`.
+1. Run `tgtg-auto`.
+2. Choose **Settings**. The generated `settings.ini` opens in your editor.
+3. Enter your account email, coordinates, and search radius.
+4. Leave `ENABLE_CHECKOUT = False` during initial setup.
+5. Restart the application, select **Login**, and enter the email code.
+6. Select **Monitor**, choose a bag, and keep the process running.
 
-2. Select **Settings** from the menu to open the settings file in your default editor.
-3. Fill in the settings as described in the [Configuration guide](https://peterschwps.com/docs/tgtg/configuration/), then restart the CLI.
-4. Select **Login** and enter the 6-digit code sent to your email.
-5. Once logged in, choose **Monitor** and select the item you want to watch.
+The full settings reference is in
+[docs/configuration.md](docs/configuration.md). Installation details and
+troubleshooting are in the [docs](docs/) directory.
 
-> [!TIP]
-> For automatic checkout, a free virtual card from [Bunq](https://bunq.com) is recommended as it has been used in development. In general, any card that works in the app should work with the CLI. See [Credit Cards](https://peterschwps.com/docs/tgtg/credit-cards/) for more details.
+## Checkout and external services
+
+Checkout is opt-in. Enabling it requires payment-card fields in the local
+settings file. Depending on the issuer, a 3-D Secure confirmation may still be
+required on another device.
+
+Some anti-bot and checkout cryptography flows inherited from the upstream
+implementation call services hosted at `peterschwps.com`. These calls occur
+when the related login protection or checkout flow is triggered. Review
+`src/tgtg_cli/apis/tgtg.py` and `src/tgtg_cli/apis/cryptography.py` before using
+automatic checkout if this dependency is not acceptable for your environment.
+
+Do not commit `settings.ini`, session files, card details, tokens, cookies, or
+logs. Runtime data is stored in the platform-specific user configuration and
+cache directories rather than inside the repository.
+
+## Development
+
+```bash
+uv sync
+uv run ruff check .
+uv run pytest
+uv build
+```
+
+Continuous integration runs linting and the test suite on Python 3.12, 3.13,
+and 3.14 across Linux, macOS, and Windows.
+
+## Attribution
+
+This repository is adapted from
+[peterschwps/TooGoodToGo-CLI](https://github.com/peterschwps/TooGoodToGo-CLI).
+The original copyright notice is retained under the MIT License; see
+[NOTICE.md](NOTICE.md) and [LICENSE](LICENSE).
 
 ## Disclaimer
 
-This project is an unofficial, independent third-party tool and is **not affiliated with, endorsed by, sponsored by, or in any way officially connected to** Too Good To Go ApS or any of its subsidiaries or affiliates.
+This project is an independent third-party tool. It is not affiliated with,
+endorsed by, sponsored by, or officially connected to Too Good To Go ApS or
+its subsidiaries. "Too Good To Go" and "TGTG" are trademarks of Too Good To Go
+ApS and are used only to identify the service with which this software
+interacts.
 
-"Too Good To Go" and "TGTG" are trademarks of Too Good To Go ApS, used here only nominatively to identify the service this software interacts with.
-
-This software is provided "as is" without warranty of any kind. Use of this tool may violate the Too Good To Go Terms of Service and could result in account termination. The authors accept no liability for any consequences arising from its use.
+The software is provided without warranty. You are responsible for reviewing
+the service terms, local laws, account risk, orders, and payments before use.

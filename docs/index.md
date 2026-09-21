@@ -1,28 +1,25 @@
 ---
 description: >-
-  The only CLI for Too Good To Go (TGTG) that automates the full checkout: it
-  monitors magic bags, notifies you when they become available and pays
-  automatically.
+  An unofficial command-line app that monitors Too Good To Go surprise bags,
+  sends notifications, and optionally completes checkout.
 hide:
   - toc
 ---
 
-# TooGoodToGo-CLI
+# TooGoodToGo Auto
 
-**The only CLI for Too Good To Go (TGTG) that automates the full checkout
-process.**
+**Monitor Too Good To Go surprise bags from the command line.**
 
-Magic bags sell out in seconds. TooGoodToGo-CLI is your personal helper tool:
+Surprise bags sell out quickly. TooGoodToGo Auto is a personal helper tool:
 it watches your favorite stores, sends a notification the instant an item
 is available. It can automatically reserve and pay for it (including 3DS), so
 you grab any item before it sells out. The app is free, open-source and runs on any platform.
 
-[![PyPI](https://img.shields.io/pypi/v/TGTG-CLI.svg?label=PyPI)](https://pypi.org/project/TGTG-CLI/)
-[![Python](https://img.shields.io/pypi/pyversions/TGTG-CLI.svg?label=Python)](https://pypi.org/project/TGTG-CLI/)
-[![CI](https://github.com/peterschwps/TooGoodToGo-CLI/actions/workflows/ci.yml/badge.svg)](https://github.com/peterschwps/TooGoodToGo-CLI/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/peterschwps/TooGoodToGo-CLI/blob/main/LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB.svg)](https://www.python.org/)
+[![CI](https://github.com/miachillgood/toogoodtogo-auto/actions/workflows/ci.yml/badge.svg)](https://github.com/miachillgood/toogoodtogo-auto/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/miachillgood/toogoodtogo-auto/blob/main/LICENSE)
 
-![Demo of TooGoodToGo-CLI in action](assets/demo.gif)
+![Demo of TooGoodToGo Auto in action](assets/demo.gif)
 
 ## Features
 

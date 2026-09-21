@@ -1,12 +1,13 @@
 [project]
-name = "TGTG-CLI"
-version = "0.1.5"
-description = "The only CLI for Too Good To Go (TGTG) that automates the full checkout process."
+name = "toogoodtogo-auto"
+version = "0.1.0"
+description = "An unofficial CLI for monitoring and reserving Too Good To Go surprise bags."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Peter Schwips", email = "tgtg-cli@peterschwps.com" }]
+maintainers = [{ name = "miachillgood" }]
 keywords = ["CLI", "TGTG", "TooGoodToGo", "Too Good To Go", "Monitor", "Automation", "Reserve"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -42,21 +43,25 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/peterschwps/TooGoodToGo-CLI"
-Documentation = "https://peterschwps.com/docs/tgtg/"
-Repository = "https://github.com/peterschwps/TooGoodToGo-CLI"
-Issues = "https://github.com/peterschwps/TooGoodToGo-CLI/issues"
-Changelog = "https://github.com/peterschwps/TooGoodToGo-CLI/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/miachillgood/toogoodtogo-auto"
+Documentation = "https://github.com/miachillgood/toogoodtogo-auto/tree/main/docs"
+Repository = "https://github.com/miachillgood/toogoodtogo-auto"
+Issues = "https://github.com/miachillgood/toogoodtogo-auto/issues"
+Changelog = "https://github.com/miachillgood/toogoodtogo-auto/blob/main/CHANGELOG.md"
 
 [project.scripts]
 tgtg = "tgtg_cli.cli.__main__:main"
 tgtg-cli = "tgtg_cli.cli.__main__:main"
+tgtg-auto = "tgtg_cli.cli.__main__:main"
 toogoodtogo = "tgtg_cli.cli.__main__:main"
 toogoodtogo-cli = "tgtg_cli.cli.__main__:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tgtg_cli"]
 
 [tool.ruff]
 line-length = 79

@@ -1,6 +1,6 @@
 ---
 description: >-
-  Full reference for TooGoodToGo-CLI's settings.ini: account, application,
+  Full reference for TooGoodToGo Auto's settings.ini: account, application,
   payment, monitor and solver options.
 ---
 
@@ -21,9 +21,9 @@ The path follows the platform-specific config directory:
 
 | OS | Path |
 | --- | --- |
-| **macOS** | `~/Library/Application Support/TGTG-CLI/settings.ini` |
-| **Linux** | `~/.config/TGTG-CLI/settings.ini` (or `$XDG_CONFIG_HOME/TGTG-CLI/settings.ini`) |
-| **Windows** | `%APPDATA%\TGTG-CLI\settings.ini` |
+| **macOS** | `~/Library/Application Support/TooGoodToGo-Auto/settings.ini` |
+| **Linux** | `~/.config/TooGoodToGo-Auto/settings.ini` (or `$XDG_CONFIG_HOME/TooGoodToGo-Auto/settings.ini`) |
+| **Windows** | `%APPDATA%\TooGoodToGo-Auto\settings.ini` |
 
 You can re-open the file at any time via **Settings** in the menu. This will
 also show you the path of the file.

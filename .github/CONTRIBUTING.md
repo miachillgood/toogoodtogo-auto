@@ -1,4 +1,4 @@
-# Contributing to TooGoodToGo-CLI
+# Contributing to TooGoodToGo Auto
 
 Thanks for your interest in contributing!
 
@@ -7,8 +7,8 @@ Thanks for your interest in contributing!
 Requires [`uv`](https://docs.astral.sh/uv/) and Python 3.12+.
 
 ```bash
-git clone https://github.com/peterschwps/TooGoodToGo-CLI.git
-cd TooGoodToGo-CLI
+git clone https://github.com/miachillgood/toogoodtogo-auto.git
+cd toogoodtogo-auto
 uv sync
 uv run pre-commit install
 uv run pre-commit install --hook-type commit-msg
@@ -57,6 +57,4 @@ uv run pre-commit run --all-files   # everything pre-commit checks
 
 - Keep PRs small and focused on one change.
 - Make sure CI passes before requesting review.
-- `CHANGELOG.md` is maintained automatically by release-please from
-  the commit messages — no manual changelog edits needed.
 - Squash-merge is the only allowed merge style.

@@ -1,12 +1,11 @@
-site_name: TooGoodToGo-CLI
-site_url: https://peterschwps.com/docs/tgtg/
+site_name: TooGoodToGo Auto
+site_url: https://github.com/miachillgood/toogoodtogo-auto
 site_description: >-
-  The only CLI for Too Good To Go (TGTG) that automates the full checkout: it
-  monitors magic bags, notifies you when they become available and pays
-  automatically.
-site_author: Peter Schwips
-repo_url: https://github.com/peterschwps/TooGoodToGo-CLI
-repo_name: peterschwps/TooGoodToGo-CLI
+  An unofficial CLI that monitors Too Good To Go surprise bags, sends
+  notifications, and optionally completes checkout.
+site_author: TooGoodToGo Auto contributors
+repo_url: https://github.com/miachillgood/toogoodtogo-auto
+repo_name: miachillgood/toogoodtogo-auto
 copyright: © Peter Schwips
 
 theme:
@@ -40,11 +39,9 @@ plugins:
   - social
   - llmstxt:
       markdown_description: >-
-        The only CLI for Too Good To Go (TGTG) that automates the full checkout
-        process, including 3DS. TooGoodToGo-CLI is a command-line bot that
-        monitors magic bags and reserves them automatically before they sell
-        out. It is easy to set up and doesn't require any extra tools. Free,
-        open-source and cross-platform.
+        TooGoodToGo Auto is an unofficial cross-platform command-line app that
+        monitors surprise bags, sends availability notifications, and can
+        optionally complete checkout, including supported 3DS flows.
       sections:
         Documentation:
           - "*.md"
@@ -67,8 +64,8 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/peterschwps/TooGoodToGo-CLI
-      name: TooGoodToGo-CLI on GitHub
+      link: https://github.com/miachillgood/toogoodtogo-auto
+      name: TooGoodToGo Auto on GitHub
 
 nav:
   - Home: index.md

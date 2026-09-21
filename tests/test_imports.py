@@ -9,9 +9,9 @@ def test_package_metadata_available() -> None:
     """
     The package must be installed and its metadata queryable.
     """
-    metadata = importlib.metadata.metadata("TGTG-CLI")
+    metadata = importlib.metadata.metadata("toogoodtogo-auto")
 
-    assert metadata["Name"] == "TGTG-CLI"
+    assert metadata["Name"] == "toogoodtogo-auto"
     assert metadata["Version"]
 
 
@@ -26,6 +26,7 @@ def test_console_scripts_registered() -> None:
 
     assert "tgtg" in names
     assert "tgtg-cli" in names
+    assert "tgtg-auto" in names
     assert "toogoodtogo" in names
     assert "toogoodtogo-cli" in names
 

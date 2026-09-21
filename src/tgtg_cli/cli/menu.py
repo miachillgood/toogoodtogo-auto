@@ -68,8 +68,10 @@ def show_menu_with_selection(user_logged_in: bool) -> MenuOptions:
                 Text(text="TooGoodToGo", style="bold", justify="center"),
                 Text.from_markup(
                     text=(
-                        "by [link=https://github.com/peterschwps]@peterschwps"
-                        "[/link]"
+                        "adapted by [link=https://github.com/miachillgood]"
+                        "@miachillgood[/link] from "
+                        "[link=https://github.com/peterschwps/TooGoodToGo-CLI]"
+                        "TooGoodToGo-CLI[/link]"
                     ),
                     style="bright_black",
                     justify="center"

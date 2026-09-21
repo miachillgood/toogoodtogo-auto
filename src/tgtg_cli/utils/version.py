@@ -11,7 +11,7 @@ from requests.exceptions import ConnectionError, Timeout
 from tgtg_cli.cli import console
 from tgtg_cli.cli.config import CACHE_DIR
 
-PACKAGE_NAME = "TGTG-CLI"
+PACKAGE_NAME = "toogoodtogo-auto"
 PYPI_URL = f"https://pypi.org/pypi/{PACKAGE_NAME}/json"
 VERSION_CHECK_FILE_PATH = CACHE_DIR / "version.json"
 
